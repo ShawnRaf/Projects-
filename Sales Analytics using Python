@@ -220,7 +220,7 @@ for index, sentence in enumerate(x_test_o):
     test.loc[(shop_id, item_id)]['item_cnt_month'] = predict_test[index]
     
 test = test.reset_index().drop(['shop_id', 'item_id'], axis=1)
-test.to_csv('submission.csv', index=False)
+test.to_csv('salesproject.csv', index=False)
 
 
     

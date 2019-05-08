@@ -177,6 +177,7 @@ def vectorize(inp):
             x[i][t][ max_shop + item_dm[char['item_id']] ] = 1
             x[i][t][ max_shop + max_item + month_dm[char['month']] ] = 1
             x[i][t][ max_shop + max_item + max_month + 1 ] = char['item_price']
+     return x
             
 x_train = vectorize(x_train_o)
 x_val = vectorize(x_val_o)

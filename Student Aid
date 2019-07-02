@@ -1,0 +1,29 @@
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+student_data_url = 'https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-Scorecard-Elements.csv'
+student_data = pd.read_csv(student_data_url)
+'https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-Scorecard-Elements.csv'
+
+student_data.head()
+student_data.isnull().sum()
+
+x = student_data.PCTPELL.dropna()
+y = student_data.PCTFLOAN.dropna()
+
+plt.scatter(x,y)
+plt.title ('Students with Pell vs Students with Fed Loan')
+plt.xlabel('% Student with Pell')
+plt.ylabel('% Student with F Loan')
+plt.show()
+
+plt.hist(x)
+plt.show()
+
+import seaborn as sns
+sns.distplot(x)
+sns.distplot(y)
+
+
+

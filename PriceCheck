@@ -1,0 +1,73 @@
+import requests
+from bs4 import BeautifulSoup
+import smtplib
+import time
+
+url = 'https://www.amazon.com/Koffee-Kult-Roast-Coffee-Beans/dp/B00PV4FG3Q/ref=sr_1_5?keywords=coffee+dark+roast&qid=1562435931&s=gateway&sr=8-5'
+
+headers = {"User Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}
+
+
+def check_price():
+    page = requests.get(url, headers = headers)
+
+    soup = BeautifulSoup(page.content, 'html.parser')
+    
+    print(soup.prettify()) 
+
+    title  = BeautifulSoup.find(id = "productTitle").text()
+    price  = BeautifulSoup.find(id = "priceblock_ourprice").text()
+
+    converted_price = float(price[0:2])
+
+    if (converted_price < 20):
+        send_mail()
+
+    print(converted_price)
+    print(title.strip())
+
+def send_mail:
+    server - smtplib.SMTP('smpt@gmail.com', 587) 
+    server.ehlo() # establishing a connection 
+    server.starttls  #making it secure
+    server.ehlo()
+
+    server.login('shawnraf@gmail.com', ############)
+
+    subject = 'Price of your Coffee has Lowered!'
+    body = 'Check out the new low price! https://www.amazon.com/Koffee-Kult-Roast-Coffee-Beans/dp/B00PV4FG3Q/ref=sr_1_5?keywords=coffee+dark+roast&qid=1562435931&s=gateway&sr=8-5'
+    
+    msg = f"Subject: {subject}\n\n{body}"
+
+    server.sendmail('shawnraf@gmail.com', msg)
+
+    print('The email has been sent!')
+
+    server.quit()
+
+
+while(True):
+    check_price()
+    time.sleep(60*60*24) #check every day 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
